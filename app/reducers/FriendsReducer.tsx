@@ -13,7 +13,6 @@ const friendsReducer = (state = INITIAL_STATE, action: { type: any; payload: num
       // We do not want to alter state directly in case
       // another action is altering it at the same time
       const {current, possible} = state;
-      console.log('action', action)
 
       // Pull friend out of friends.possible
       // Note that action.payload === friendIndex

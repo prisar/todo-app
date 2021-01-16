@@ -1,12 +1,12 @@
 import React, {memo, useState} from 'react';
-import {View, StyleSheet, Text, Button, TouchableOpacity, SafeAreaView} from 'react-native';
+import {View, StyleSheet, Text, Button} from 'react-native';
 
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import {AnyAction, bindActionCreators, Dispatch} from 'redux';
 import {addFriend} from '../../actions/FriendsActions';
 
 export function HomeScreen({friends, addFriend}) {
-  const addFrnd = (index) => {
+  const addFrnd = (index: number) => {
     addFriend(index);
   };
 
@@ -15,7 +15,7 @@ export function HomeScreen({friends, addFriend}) {
       <View style={styles.container}>
         <Text>You have {friends.current.length} friends.</Text>
 
-        {friends.possible.map((friend, index) => (
+        {friends.possible.map((friend: string | number | null | undefined, index: any) => (
           <Button key={friend} title={`Add ${friend}`} onPress={() => addFrnd(index)} />
         ))}
         <Button title="Add some friends" onPress={() => {}} />
@@ -33,12 +33,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: { friends: any; }) => {
   const {friends} = state;
   return {friends};
 };
 
-const mapDispatchToProps = (dispatch) =>
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
   bindActionCreators(
     {
       addFriend,

@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import HomeScreen from '../Home/HomeScreen';
+import React from 'react';
+import AppNavigator from '../../navigation/AppNavigator';
 
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
@@ -11,7 +11,7 @@ const RootScreen = () => {
   return (
     <>
       <Provider store={store}>
-        <HomeScreen />
+        <AppNavigator />
       </Provider>
     </>
   );
