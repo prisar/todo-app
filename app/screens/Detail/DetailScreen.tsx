@@ -1,15 +1,11 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Text, Button} from 'react-native';
 
-import {Todo} from '../../store/todo/model';
-import {selectTodos} from '../../store/todo/selectors';
-
-const ProfileScreen = () => {
-  const todos: Todo[] = selectTodos();
+const DetailScreen = () => {
   return (
     <>
       <View style={styles.container}>
-        <Text style={styles.count}>{todos?.length} todos to work on!</Text>
+        <Text>Todo Details</Text>
       </View>
     </>
   );
@@ -22,9 +18,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  count: {
-    fontSize: 32,
-  },
 });
 
-export default ProfileScreen;
+export default DetailScreen;

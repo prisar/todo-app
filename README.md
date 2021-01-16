@@ -1,3 +1,15 @@
-# References:
+# TODO APP
 
-https://medium.com/@killerchip0/react-native-redux-typescript-guide-f251db03428f
+## How to run
+
+#### Install all packages
+    npm i
+
+#### build and run on android
+    npx react-native run-android
+
+
+#### run test
+    npm run test
+#### APK
+    link

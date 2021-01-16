@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import HomeScreen from '../screens/Home/HomeScreen';
 import AddTodoScreen from '../screens/AddTodo/AddTodoScreen';
 import ProfileScreen from '../screens/Profile/ProfileScreen';
+import DetailScreen from '../screens/Detail/DetailScreen';
 
 const RootStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -24,7 +25,7 @@ function HomeTabs() {
           let iconSize;
 
           if (route.name === 'Home') {
-            iconName = focused ? 'home' : 'home';
+            iconName = focused ? 'list' : 'list';
           } else if (route.name === 'AddTodo') {
             iconName = focused ? 'plus-circle' : 'plus-circle';
           } else if (route.name === 'Profile') {
@@ -39,122 +40,38 @@ function HomeTabs() {
 
           return <Icon name={iconName} size={iconSize} color={color} />;
         },
-        tabBarButton: ['Login'].includes(route.name)
+        tabBarButton: ['Detail'].includes(route.name)
           ? () => {
               return null;
             }
           : undefined,
       })}
       tabBarOptions={{
-        activeTintColor: 'black',
-        inactiveTintColor: 'gray',
+        activeTintColor: '#1654f0',
+        inactiveTintColor: 'black',
       }}
       initialRouteName="Home">
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="AddTodo" component={AddTodoScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Detail" component={DetailScreen} />
     </Tab.Navigator>
   );
 }
 
 const AppNavigator = React.forwardRef(() => {
-  // const routeNameRef = React.useRef();
-  // const navigationRef = React.useRef();
-
-  // const [state, dispatch] = React.useReducer(
-  //   (prevState, action) => {
-  //     switch (action.type) {
-  //       case 'RESTORE_TOKEN':
-  //         return {
-  //           ...prevState,
-  //           userToken: action.token,
-  //           isLoading: false,
-  //         };
-  //       case 'SIGN_IN':
-  //         return {
-  //           ...prevState,
-  //           isSignout: false,
-  //           userToken: action.token,
-  //         };
-  //       case 'SIGN_OUT':
-  //         return {
-  //           ...prevState,
-  //           isSignout: true,
-  //           userToken: null,
-  //         };
-  //     }
-  //   },
-  //   {
-  //     isLoading: true,
-  //     isSignout: false,
-  //     userToken: null,
-  //   },
-  // );
-
-  // React.useEffect(() => {
-  //   // Fetch the token from storage then navigate to our appropriate place
-  //   const bootstrapAsync = async () => {
-  //     let userToken;
-
-  //     try {
-  //       userToken = await AsyncStorage.getItem('userToken');
-  //     } catch (e) {
-  //       // Restoring token failed
-  //     }
-
-  //     // After restoring token, we may need to validate it in production apps
-
-  //     // This will switch to the App screen or Auth screen and this loading
-  //     // screen will be unmounted and thrown away.
-  //     dispatch({type: 'RESTORE_TOKEN', token: userToken});
-  //   };
-
-  //   bootstrapAsync();
-  // }, []);
-
-  // const authContext = React.useMemo(
-  //   () => ({
-  //     signIn: async (data) => {
-  //       // In a production app, we need to send some data (usually username, password) to server and get a token
-  //       // We will also need to handle errors if sign in failed
-  //       // After getting token, we need to persist the token using `AsyncStorage`
-  //       // In the example, we'll use a dummy token
-
-  //       // await AsyncStorage.setItem('userToken', data.token);
-  //       console.log('sigin context');
-
-  //       dispatch({type: 'SIGN_IN', token: 'b3ScJaP67wX2WxJ0p6K9vacHbQh2n'});
-  //     },
-  //     signOut: () => dispatch({type: 'SIGN_OUT'}),
-  //     signUp: async (data) => {
-  //       // In a production app, we need to send user data to server and get a token
-  //       // We will also need to handle errors if sign up failed
-  //       // After getting token, we need to persist the token using `AsyncStorage`
-  //       // In the example, we'll use a dummy token
-
-  //       dispatch({type: 'SIGN_IN', token: 'dummy-auth-token'});
-  //     },
-  //   }),
-  //   [],
-  // );
-
   return (
     <NavigationContainer
       // ref={navigationRef}
       // onReady={() =>
       //   (routeNameRef.current = navigationRef.current.getCurrentRoute().name)
       // }
-      onStateChange={() => {
-      }}>
+      onStateChange={() => {}}>
       <RootStack.Navigator
         screenOptions={{
           headerShown: false,
         }}>
-        {/* <RootStack.Screen name="Splash" component={SplashScreen} />
-                <RootStack.Screen
-                  name="Onboarding"
-                  component={OnboardingScreen}
-                /> */}
+        {/* <RootStack.Screen name="Splash" component={SplashScreen} /> */}
         <RootStack.Screen name="HomeTabs" component={HomeTabs} />
       </RootStack.Navigator>
     </NavigationContainer>
