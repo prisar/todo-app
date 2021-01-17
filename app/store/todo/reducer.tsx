@@ -17,6 +17,11 @@ export const todoReducer = (state = initialState, action: any): TodoState => {
     case TodoActionTypes.ADD_TODOS:
       return {...state, todos: [...state.todos, ...payload]};
 
+    case TodoActionTypes.UPDATE_TODOS:
+      const todos = state.todos.filter((todo: Todo) => todo.id !== payload.id);
+      todos.push(payload);
+      return {...state, todos: [...todos]};
+
     case TodoActionTypes.REMOVE_TODO:
       return {
         ...state,
@@ -25,8 +30,6 @@ export const todoReducer = (state = initialState, action: any): TodoState => {
 
     case TodoActionTypes.ADD_TODO:
       const newTodoList = sortBy([...state.todos, payload], 'dateDue');
-
-      // return {...state, todos: [...state.todos, payload]};
       return {...state, todos: newTodoList};
 
     case TodoActionTypes.LOAD_TODOS:

@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   label: {
-    // fontFamily: 'Roboto'
     fontSize: 15,
     textAlign: 'center',
   },

@@ -11,5 +11,3 @@
 
 #### run test
     npm run test
-#### APK
-    link

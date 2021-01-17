@@ -3,6 +3,7 @@ import {orderBy} from 'lodash';
 
 export enum TodoActionTypes {
   ADD_TODOS = 'todo/ADD_TODOS',
+  UPDATE_TODOS = 'todo/UPDATE_TODOS',
   REMOVE_TODO = 'todo/REMOVE_TODO',
   ADD_TODO = 'todo/ADD_TODO',
   LOAD_TODOS = 'todo/LOAD_TODOS',
@@ -11,6 +12,11 @@ export enum TodoActionTypes {
 
 export const addTodos = (todos: Todo[]) => ({
   type: TodoActionTypes.ADD_TODOS,
+  payload: todos,
+});
+
+export const updateTodo = (todos: Todo) => ({
+  type: TodoActionTypes.UPDATE_TODOS,
   payload: todos,
 });
 

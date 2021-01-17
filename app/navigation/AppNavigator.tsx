@@ -18,7 +18,7 @@ function HomeTabs() {
       screenOptions={({route}) => ({
         tabBarLabel: ({focused}) => {
           const routeName = route.name;
-          return null; // remove tab names, translaton not working
+          return null;
         },
         tabBarIcon: ({focused, color, size}) => {
           let iconName: any;
@@ -61,17 +61,11 @@ function HomeTabs() {
 
 const AppNavigator = React.forwardRef(() => {
   return (
-    <NavigationContainer
-      // ref={navigationRef}
-      // onReady={() =>
-      //   (routeNameRef.current = navigationRef.current.getCurrentRoute().name)
-      // }
-      onStateChange={() => {}}>
+    <NavigationContainer onStateChange={() => {}}>
       <RootStack.Navigator
         screenOptions={{
           headerShown: false,
         }}>
-        {/* <RootStack.Screen name="Splash" component={SplashScreen} /> */}
         <RootStack.Screen name="HomeTabs" component={HomeTabs} />
       </RootStack.Navigator>
     </NavigationContainer>

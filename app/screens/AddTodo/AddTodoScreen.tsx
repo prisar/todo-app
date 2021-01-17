@@ -23,7 +23,7 @@ export function AddTodoScreen({navigation}: any) {
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(undefined);
 
   const dispatch = useDispatch();
   const imageIconSize = 52;
@@ -39,6 +39,12 @@ export function AddTodoScreen({navigation}: any) {
       dateDue: date,
     };
     dispatch(addTodo(newTodo));
+    console.log('newTodo', newTodo);
+    setTitle('');
+    setDescription('');
+    setImage(undefined);
+    setDate(new Date());
+
     setTimeout(function () {
       setShowDoneAnimation(false);
       navigation.navigate('Home');
