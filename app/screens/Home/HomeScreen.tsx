@@ -8,8 +8,8 @@ import {
   Image,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
-import CheckBox from '@react-native-community/checkbox';
 import moment from 'moment';
+import LottieView from 'lottie-react-native';
 
 import Separator from '../../components/Separator';
 import TodoService from '../../services/TodoService';
@@ -40,6 +40,17 @@ const HomeScreen = ({navigation}: any) => {
   return (
     <View style={styles.container}>
       <Text style={styles.listTitle}>Todos</Text>
+      {!todos.length && (
+        <>
+          <Text>All caught up</Text>
+          <LottieView
+            source={require('../../assets/empty-state.json')}
+            autoPlay
+            loop={true}
+            style={styles.emptyAnimation}
+          />
+        </>
+      )}
       <FlatList
         data={todos}
         ItemSeparatorComponent={Separator}
@@ -47,21 +58,16 @@ const HomeScreen = ({navigation}: any) => {
           <TouchableOpacity
             style={styles.item}
             onPress={() => handleTodoPress(item)}>
-            {/* <CheckBox
-              disabled={true}
-              value={item.complete}
-              onValueChange={setSelection}
-              style={styles.checkbox}></CheckBox> */}
             <Image
               source={{
                 uri:
                   item.image ||
-                  'https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/indian_man_male_person-512.png',
+                  'https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg',
               }}
-              style={{height: 100, width: 100, marginRight: 20}}
+              style={styles.image}
             />
             <View style={{flex: 1}}>
-              <Text>{item.title}</Text>
+              <Text style={styles.todoTitle}>{item.title}</Text>
               <Text style={{borderTopWidth: 0.5}}>
                 {moment(item.dateDue).fromNow()}
               </Text>
@@ -109,6 +115,18 @@ const styles = StyleSheet.create({
     color: '#1654f0',
     alignSelf: 'flex-start',
     margin: 20,
+  },
+  emptyAnimation: {
+    alignSelf: 'center',
+    width: 250,
+  },
+  todoTitle: {
+    fontSize: 20,
+  },
+  image: {
+    height: 100,
+    width: 100,
+    marginRight: 20,
   },
 });
 

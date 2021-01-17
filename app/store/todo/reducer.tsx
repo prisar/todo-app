@@ -30,7 +30,6 @@ export const todoReducer = (state = initialState, action: any): TodoState => {
       return {...state, todos: newTodoList};
 
     case TodoActionTypes.LOAD_TODOS:
-      console.log('object', payload);
       return {...state, todos: payload};
 
     case TodoActionTypes.SET_CURRENT_TODO:
